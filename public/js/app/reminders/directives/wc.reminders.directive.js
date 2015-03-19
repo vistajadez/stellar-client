@@ -3,23 +3,23 @@
 
     /**
      * @ngdoc directive
-     * @name wcDuecontacts
+     * @name wcReminders
      *
      * @scope
      * @description
      *
-     * Display a list of contacts that are due to be contacted.
+     * Display a list of reminders (i.e. anniversaries, birthdays).
      * @example:
-            <example>
-                <wc-duecontacts></wc-duecontacts>
-            </example>
+     <example>
+        <wc-reminders></wc-reminders>
+     </example>
      */
-    angular.module('wc.duecontacts.directive', [])
-        .directive('wcDuecontacts', [
+    angular.module('wc.reminders.directive', [])
+        .directive('wcReminders', [
             function() {
                 return {
                     restrict: 'E',
-                    templateUrl: 'duecontacts.html',
+                    templateUrl: 'reminders.html',
                     scope: {},
                     replace: true,
                     link: function(scope) {

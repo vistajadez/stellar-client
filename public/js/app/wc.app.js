@@ -11,7 +11,8 @@
         'wc.config',
         'wc.navbar',
         'wc.dashboard',
-        'wc.duecontacts'
+        'wc.duecontacts',
+        'wc.reminders'
     ])
     .config([
         'wcConfig',
