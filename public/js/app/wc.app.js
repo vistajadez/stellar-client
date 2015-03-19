@@ -10,7 +10,8 @@
         'wc.templates',
         'wc.config',
         'wc.navbar',
-        'wc.dashboard'
+        'wc.dashboard',
+        'wc.duecontacts'
     ])
     .config([
         'wcConfig',
@@ -45,7 +46,7 @@
     .run([
         'wcConfig',
         function(wcConfig) {
-
+            //add any route intercepts here
 
 
         }

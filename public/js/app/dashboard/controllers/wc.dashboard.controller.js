@@ -15,8 +15,7 @@
             '$location',
             '$state',
             '$stateParams',
-            'wcConfig',
-            function ($scope, $location, $state, $stateParams, wcConfig) {
+            function ($scope, $location, $state, $stateParams) {
 
 
             }]);
