@@ -1,11 +1,11 @@
 {
-  "name": "Sample Client",
+  "name": "Stellar",
   "version": "0.0.1",
   "authors": [
-    "Jason"
+    "Jason Melendez<jason.melendez@gmail.com>"
   ],
-  "description": "Initial setup of an Angular stack, with full gulp build process",
-  "main": "webapp/wc",
+  "description": "Web client for the Relations, Inc. Stellar app",
+  "main": "public/wc",
   "license": "MIT",
   "private": true,
   "ignore": [

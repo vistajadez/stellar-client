@@ -1,8 +1,8 @@
 {
-  "name": "InitTest",
+  "name": "Stellar",
   "version": "0.0.1",
-  "description": "Testing initial setup of an Angular stack",
-  "main": "wds.global.services.audit.js",
+  "description": "Web client for the Relations, Inc. Stellar application",
+  "main": "wc.app.js",
   "directories": {
     "test": "test"
   },
@@ -10,7 +10,7 @@
     "test": "gulp test",
     "start": "./bin/www"
   },
-  "author": "Jason",
+  "author": "Jason Melendez<jason.melendez@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "bower": "^1.3.12",
