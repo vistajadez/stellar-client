@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="wc" ng-strict-di>
+<head lang="en">
+    <base href="/">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/favicon_0.ico" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>My Web Client</title>
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+</head>
+<body>
+    <div id="wc-app-navbar" ui-view="header"></div>
+    <div id="wc-app-content" ui-view="content"></div>
+    <script src="/js/dist/lib.js"></script>
+    <script src="/js/dist/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+node_modules
+bower_components
+*.css
+public/js/dist/*
+public/less/lib/*
+public/fonts/*
