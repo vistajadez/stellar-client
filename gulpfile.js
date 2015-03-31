@@ -45,7 +45,7 @@ gulp.task('dev:clean', function() {
 });
 
 // takes any HTML files and adds them as cached templates to an Angular module
-gulp.task('dev:templates', function() {
+gulp.task('dev:templates', ['dev:clean'], function() {
     var srcPath = path.join(libPrefix.dev.path, 'js/app/**/*.html'),
         destPath = path.join(libPrefix.prod.path, 'js/dist');
 
@@ -62,7 +62,7 @@ gulp.task('dev:templates', function() {
 });
 
 // converts less files to CSS in the /css folder
-gulp.task('dev:lesstocss', function () {
+gulp.task('dev:lesstocss', ['dev:clean'], function () {
     var srcPath = path.join(libPrefix.dev.path, 'less/app.less'),
         destPath = path.join(libPrefix.prod.path, 'css');
 
@@ -72,7 +72,7 @@ gulp.task('dev:lesstocss', function () {
         .on('error', gutil.log);
 });
 
-gulp.task('dev:libjs', function() {
+gulp.task('dev:libjs', ['dev:clean'], function() {
     var stream = streamqueue({ objectMode: true }),
         destPath = path.join(libPrefix.prod.path, 'js/dist');
 
@@ -143,7 +143,7 @@ gulp.task('prod:appjs', ['prod:templates'], function() {
         .pipe(gulp.dest(destPath))
 });
 
-gulp.task('prod:templates', function() {
+gulp.task('prod:templates', ['prod:clean'], function() {
     var srcPath = path.join(libPrefix.dev.path, 'js/app/**/*.html');
         destPath = path.join(libPrefix.dev.path, 'js/dist');
 
@@ -164,7 +164,7 @@ gulp.task('prod:templates', function() {
         .pipe(gulp.dest(destPath));
 });
 
-gulp.task('prod:lesstocss', function () {
+gulp.task('prod:lesstocss', ['prod:clean'], function () {
     var srcPath = path.join(libPrefix.dev.path + 'less/app.less'),
         destPath = path.join(libPrefix.dev.path + 'css'),
         cleancss = new LessCleanCss({ advanced: true });
@@ -177,7 +177,7 @@ gulp.task('prod:lesstocss', function () {
         .on('error', gutil.log);
 });
 
-gulp.task('prod:libjs', function() {
+gulp.task('prod:libjs', ['prod:clean'], function() {
     var stream = streamqueue({ objectMode: true }),
         destPath = path.join(libPrefix.dev.path, 'js/dist');
 
