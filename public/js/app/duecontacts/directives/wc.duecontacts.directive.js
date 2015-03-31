@@ -16,14 +16,21 @@
      */
     angular.module('wc.duecontacts.directive', [])
         .directive('wcDuecontacts', [
-            function() {
+            'authService',
+            function(authService) {
                 return {
                     restrict: 'E',
                     templateUrl: 'duecontacts.html',
                     scope: {},
                     replace: true,
                     link: function(scope) {
-
+                        scope.test = 'logging in...';
+                        authService.login('myemail@gmail.com','testpass')
+                            .then(function(result) {
+                                scope.test = result.token;
+                            }, function(message) {
+                                scope.test = message;
+                            });
 
 
                     }
