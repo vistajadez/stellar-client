@@ -14,7 +14,8 @@
             '$http',
             '$q',
             '$window',
-            function authServiceFactory($http, $q, $window) {
+            'wcConfig',
+            function authServiceFactory($http, $q, $window, wcConfig) {
                 var userInfo;
 
                 if ($window.sessionStorage.userInfo) {
@@ -35,7 +36,7 @@
 
                         $http.defaults.headers.common['x-stellar-email'] = email;
                         $http.defaults.headers.common['x-stellar-password'] = password;
-                        $http.get("https://livingstellar.com/api/v1/auth")
+                        $http.get(wcConfig.api.auth)
                            .then(function(result) {
                            if (result.data.status === 'success') {
                                userInfo.id = result.data.data.user;

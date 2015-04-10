@@ -11,7 +11,9 @@
         })
         .constant('wcConfig', {
             // put config values here
-
+            api: {
+                auth: 'https://livingstellar.com/api/v1/auth'
+            }
         });
 
 })(window, window.angular);
