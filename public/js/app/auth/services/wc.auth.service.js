@@ -15,16 +15,14 @@
             '$q',
             '$window',
             function authServiceFactory($http, $q, $window) {
-                var userInfo = {};
+                var userInfo;
 
                 if ($window.sessionStorage.userInfo) {
-                    userInfo.id = $window.sessionStorage.userInfo.id;
-                    userInfo.token = $window.sessionStorage.userInfo.token;
+                    userInfo = JSON.parse($window.sessionStorage.userInfo);
                 } else {
                     userInfo = {id:"", token:""};
                 }
 
-                console.log($window.sessionStorage.userInfo);
                 return {
                     /**
                      * Login.
@@ -69,8 +67,15 @@
                      */
                     logout: function() {
                         userInfo = {id:"", token:""};
-                    }
+                    },
 
+                    /**
+                     * Is Logged In.
+                     * @returns {boolean}
+                     */
+                    isLoggedIn: function() {
+                        return userInfo && userInfo.id !== '';
+                    }
 
                 };
 
