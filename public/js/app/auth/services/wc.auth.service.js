@@ -15,8 +15,23 @@
             '$q',
             '$window',
             function authServiceFactory($http, $q, $window) {
-                var userInfo = {status: "success", data: {user: 1, token: 'test'}};
+                var userInfo = {};
+
+                if ($window.sessionStorage.userInfo) {
+                    userInfo.id = $window.sessionStorage.userInfo.id;
+                    userInfo.token = $window.sessionStorage.userInfo.token;
+                } else {
+                    userInfo = {id:"", token:""};
+                }
+
+                console.log($window.sessionStorage.userInfo);
                 return {
+                    /**
+                     * Login.
+                     * @param email
+                     * @param password
+                     * @returns {*}
+                     */
                     login: function(email, password) {
                         var deferred = $q.defer();
 
@@ -25,10 +40,9 @@
                         $http.get("https://livingstellar.com/api/v1/auth")
                            .then(function(result) {
                            if (result.data.status === 'success') {
-                               userInfo = {
-                                   token: result.data.data.token,
-                                   userId: result.data.data.user
-                               };
+                               userInfo.id = result.data.data.user;
+                               userInfo.token = result.data.data.token;
+                               $window.sessionStorage.userInfo = JSON.stringify(userInfo);
 
                                deferred.resolve(userInfo);
                            } else {
@@ -41,8 +55,20 @@
 
                         return deferred.promise;
                     },
+
+                    /**
+                     * Get User Info.
+                     * @returns {{userId: string, token: string}}
+                     */
                     getUserInfo: function() {
                         return userInfo;
+                    },
+
+                    /**
+                     * Log out.
+                     */
+                    logout: function() {
+                        userInfo = {id:"", token:""};
                     }
 
 
