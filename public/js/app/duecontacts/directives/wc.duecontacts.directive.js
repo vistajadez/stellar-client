@@ -17,7 +17,8 @@
     angular.module('wc.duecontacts.directive', [])
         .directive('wcDuecontacts', [
             'authService',
-            function(authService) {
+            'contactsService',
+            function(authService, contactsService) {
                 return {
                     restrict: 'E',
                     templateUrl: 'duecontacts.html',
@@ -28,6 +29,7 @@
                         authService.login('myemail@gmail.com','testpass')
                             .then(function(result) {
                                 scope.test = result.token;
+                                contactsService.getContacts();
                             }, function(message) {
                                 scope.test = message;
                             });

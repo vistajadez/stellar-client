@@ -13,7 +13,8 @@
         'wc.dashboard',
         'wc.duecontacts',
         'wc.reminders',
-        'wc.auth'
+        'wc.auth',
+        'wc.contacts'
     ])
     .config([
         'wcConfig',
