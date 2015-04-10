@@ -45,7 +45,7 @@ gulp.task('dev:clean', function() {
 });
 
 // takes any HTML files and adds them as cached templates to an Angular module
-gulp.task('dev:templates', ['dev:clean'], function() {
+gulp.task('dev:templates', function() {
     var srcPath = path.join(libPrefix.dev.path, 'js/app/**/*.html'),
         destPath = path.join(libPrefix.prod.path, 'js/dist');
 
@@ -62,7 +62,7 @@ gulp.task('dev:templates', ['dev:clean'], function() {
 });
 
 // converts less files to CSS in the /css folder
-gulp.task('dev:lesstocss', ['dev:clean'], function () {
+gulp.task('dev:lesstocss', function () {
     var srcPath = path.join(libPrefix.dev.path, 'less/app.less'),
         destPath = path.join(libPrefix.prod.path, 'css');
 
@@ -72,7 +72,7 @@ gulp.task('dev:lesstocss', ['dev:clean'], function () {
         .on('error', gutil.log);
 });
 
-gulp.task('dev:libjs', ['dev:clean'], function() {
+gulp.task('dev:libjs', function() {
     var stream = streamqueue({ objectMode: true }),
         destPath = path.join(libPrefix.prod.path, 'js/dist');
 
