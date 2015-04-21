@@ -34,9 +34,9 @@
                     login: function(email, password) {
                         var deferred = $q.defer();
 
-                        $http.defaults.headers.common['x-stellar-email'] = email;
-                        $http.defaults.headers.common['x-stellar-password'] = password;
-                        $http.get(wcConfig.api.auth)
+                        $http({method: 'GET', url: wcConfig.api.auth, headers: {
+                            'x-stellar-email': email, 'x-stellar-password': password}
+                        })
                            .then(function(result) {
                            if (result.data.status === 'success') {
                                userInfo.id = result.data.data.user;

@@ -36,8 +36,9 @@
                         url = wcConfig.api.contacts.url
                             + '?since=' + lastPullTimestamp
                             + '&dependents=' + wcConfig.api.contacts.dependents;
-                        $http.defaults.headers.common['x-stellar-token'] = userInfo.token;
-                        $http.get(url)
+                        $http({method: 'GET', url: url, headers: {
+                            'x-stellar-token': userInfo.token
+                        }})
                             .then(function(result) {
                                 /* Converts array in form of [{key:2,..},{key:4,..},...] to an object in form of
                                  * {2:{key:2,..}, 4:{key:4,..},...}. Combines newly pulled contacts with those
