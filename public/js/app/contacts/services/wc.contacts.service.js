@@ -15,7 +15,7 @@
             '$http',
             'wcConfig',
             function contactsServiceFactory(authService, $http, wcConfig) {
-                var contacts;
+                var contacts = {};
                 var lastPullTimestamp = ''; // every time we pull from server, we'll set this
 
                 return {
@@ -48,11 +48,12 @@
                                  * object is quick and efficient.
                                  */
                                 let pulledContacts = result.data.data;
-                                contacts = pulledContacts.reduce(function(previousValue, currentValue) {
-                                    previousValue = previousValue || {};
-                                    previousValue[currentValue.key] = currentValue;
-                                    return previousValue;
-                                }, contacts);
+                                if (pulledContacts.length > 0) {
+                                    contacts = pulledContacts.reduce(function (previousValue, currentValue) {
+                                        previousValue[currentValue.key] = currentValue;
+                                        return previousValue;
+                                    }, contacts);
+                                }
 
                                 console.log(contacts);
                                 return contacts;
