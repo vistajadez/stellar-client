@@ -25,16 +25,8 @@
                     scope: {},
                     replace: true,
                     link: function(scope) {
-                        scope.test = 'logging in...';
-                        authService.login('myemail@gmail.com','testpass')
-                            .then(function(result) {
-                                scope.test = result.token;
-                                contactsService.getContacts();
-                            }, function(message) {
-                                scope.test = message;
-                            });
-
-
+                        scope.contacts = contactsService.getContacts();
+                        console.log(scope.contacts);
                     }
                 };
             }

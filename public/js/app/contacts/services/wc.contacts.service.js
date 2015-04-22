@@ -56,7 +56,6 @@
                                     }, contacts);
                                 }
 
-                                console.log(contacts);
                                 return contacts;
                             })
                             .then(null, function(err) {

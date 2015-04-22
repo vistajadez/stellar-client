@@ -41,6 +41,13 @@
                             controller: 'WcNavbarController'
                         }
                     }
+                })
+                .state('login', {
+                    views: {
+                        "content@" : {
+                            templateUrl: 'login.html'
+                        }
+                    }
                 });
  
 
