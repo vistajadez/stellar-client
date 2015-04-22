@@ -8,6 +8,6 @@
      */
     angular.module('wc.login', [
         // Controllers
-
+        'wc.login.controller'
     ]);
 })(window, window.angular);

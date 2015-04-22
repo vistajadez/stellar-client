@@ -45,7 +45,8 @@
                 .state('login', {
                     views: {
                         "content@" : {
-                            templateUrl: 'login.html'
+                            templateUrl: 'login.html',
+                            controller: 'WcLoginController'
                         }
                     }
                 });
