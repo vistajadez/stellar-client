@@ -19,11 +19,11 @@
             function ($scope, $location, $state, authService, wcConfig) {
                 // Authentication
                 if (authService.isLoggedIn() === false) {
-                    $state.go('login', { location: false }); // go to login
+                    $state.go('login'); // go to login
                     throw new Error(wcConfig.errorMessages.notAuthorized);
                 }
 
-                console.log('logged in');
+                // logged in
 
             }]);
 

@@ -1,3 +1,10 @@
-<p>
-    Due contacts will go here {{test}}
-</p>
+<div class="container wc-duecontacts">
+    <div ng-if="!contacts">
+        Due contacts will go here. Loading...
+    </div>
+
+    <div ng-if="contacts">
+        Contacts have been loaded!
+    </div>
+
+</div>

@@ -56,7 +56,6 @@
                                     }, contacts);
                                 }
 
-                                return contacts;
                             })
                             .then(null, function(err) {
                                 throw new Error(err);
@@ -65,6 +64,7 @@
                         // reset timestamp
                         lastPullTimestamp = Math.round((new Date()).getTime() / 1000);
 
+                        return contacts;
                     }
 
 

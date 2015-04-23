@@ -26,7 +26,8 @@
                     replace: true,
                     link: function(scope) {
                         scope.contacts = contactsService.getContacts();
-                        console.log(scope.contacts);
+
+
                     }
                 };
             }

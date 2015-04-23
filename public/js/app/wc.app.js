@@ -14,7 +14,8 @@
         'wc.duecontacts',
         'wc.reminders',
         'wc.auth',
-        'wc.contacts'
+        'wc.contacts',
+        'wc.login'
     ])
     .config([
         'wcConfig',
@@ -26,7 +27,9 @@
             $urlRouterProvider.when('/', '/dashboard');
             $urlRouterProvider.otherwise('/dashboard');
 
-            $locationProvider.hashPrefix('!').html5Mode(true);
+            // Use HTML5 mode only if HTML5 History API is available (IE9 doesn't support)
+            // http://stackoverflow.com/questions/22763599/ie-9-not-supporting-locationprovider-html5mode
+            $locationProvider.hashPrefix('!').html5Mode(window.history && history.pushState ? true : false);
 
             $stateProvider
                 .state('dashboard', {
@@ -43,6 +46,7 @@
                     }
                 })
                 .state('login', {
+                    url: '/login',
                     views: {
                         "content@" : {
                             templateUrl: 'login.html',
