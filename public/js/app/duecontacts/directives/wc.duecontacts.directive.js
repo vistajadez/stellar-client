@@ -16,16 +16,23 @@
      */
     angular.module('wc.duecontacts.directive', [])
         .directive('wcDuecontacts', [
-            'authService',
             'contactsService',
-            function(authService, contactsService) {
+            'usermessageService',
+            function(contactsService, usermessageService) {
                 return {
                     restrict: 'E',
                     templateUrl: 'duecontacts.html',
                     scope: {},
                     replace: true,
                     link: function(scope) {
-                        scope.contacts = contactsService.getContacts();
+                        // refresh contacts from server and load a reference to the list into scope
+                        contactsService.loadContacts()
+                            .then(function(result) {
+                                scope.contacts = result;
+                            })
+                            .then(null, function(err) {
+                                usermessageService.growlError(err);
+                            });
 
 
                     }
