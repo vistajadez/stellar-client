@@ -7,6 +7,7 @@
         'ui.router',
         'angular-growl',
         'ngAnimate',
+        'angularSpinner',
 
         // wc
         'wc.templates',

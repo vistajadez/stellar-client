@@ -23,7 +23,9 @@ var vendorNgJs = [
     'angular-bootstrap/ui-bootstrap-tpls.js',
     'angular-ui-router/release/angular-ui-router.js',
     'angular-growl-v2/build/angular-growl.js',
-    'angular-animate/angular-animate.js'
+    'angular-animate/angular-animate.js',
+    'spin.js/spin.js',
+    'angular-spinner/angular-spinner.js'
 ].map(function(sPath) {
     return path.join(libPrefix.bower.path, sPath);
 });

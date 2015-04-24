@@ -16,7 +16,8 @@
             '$state',
             'authService',
             'usermessageService',
-            function ($scope, $location, $state, authService, usermessageService) {
+            'usSpinnerService',
+            function ($scope, $location, $state, authService, usermessageService, usSpinnerService) {
                 // model bound to form input:
                 $scope.loginform = {};
 
@@ -25,11 +26,16 @@
                  * Called when log in form is submitted.
                  */
                 $scope.logIn = function() {
+                    usSpinnerService.spin('loginSubmit');
+
                     authService.login($scope.loginform.email, $scope.loginform.password)
                     .then(function(result) {
+                        usSpinnerService.stop('loginSubmit');
+
                         // forward to Dashboard
                         $state.go('dashboard');
                     }, function(message) {
+                        usSpinnerService.stop('loginSubmit');
                         usermessageService.growlError(message);
                     });
                 };

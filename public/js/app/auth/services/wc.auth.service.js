@@ -68,6 +68,7 @@
                      */
                     logout: function() {
                         userInfo = {id:"", token:""};
+                        $window.sessionStorage.userInfo = JSON.stringify(userInfo);
                     },
 
                     /**
