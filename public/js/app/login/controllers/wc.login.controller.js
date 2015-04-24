@@ -15,8 +15,8 @@
             '$location',
             '$state',
             'authService',
-            'wcConfig',
-            function ($scope, $location, $state, authService, wcConfig) {
+            'usermessageService',
+            function ($scope, $location, $state, authService, usermessageService) {
                 // model bound to form input:
                 $scope.loginform = {};
 
@@ -30,7 +30,7 @@
                         // forward to Dashboard
                         $state.go('dashboard');
                     }, function(message) {
-                        console.log(message);
+                        usermessageService.growlError(message);
                     });
                 };
 

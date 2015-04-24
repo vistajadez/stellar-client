@@ -21,7 +21,9 @@ var libPrefix = {
 var vendorNgJs = [
     'angular/angular.js',
     'angular-bootstrap/ui-bootstrap-tpls.js',
-    'angular-ui-router/release/angular-ui-router.js'
+    'angular-ui-router/release/angular-ui-router.js',
+    'angular-growl-v2/build/angular-growl.js',
+    'angular-animate/angular-animate.js'
 ].map(function(sPath) {
     return path.join(libPrefix.bower.path, sPath);
 });

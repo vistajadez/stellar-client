@@ -205,7 +205,13 @@ gulp.task('build:bootstrapless', function() {
 });
 
 gulp.task('build:csstolesslibcss', function() {
+    var files = [
+        path.join(libPrefix.bower.path, 'angular-growl-v2/build/angular-growl.css')
+    ];
+    var destPath = path.join(libPrefix.dev.path, 'less/libcss');
 
+    return gulp.src(files)
+    .pipe(gulp.dest(destPath));
 });
 
 gulp.task('build:bootstrapglyphicons', function() {

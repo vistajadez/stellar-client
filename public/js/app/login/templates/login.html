@@ -1,11 +1,20 @@
 <div class="container wc-login">
+    <div growl></div>
 
     <form class="form-signin" name="form" role="form" novalidate ng-submit="logIn()">
         <h2 class="form-signin-heading">Please log in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail"  ng-model="loginform.email" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" ng-model="loginform.password" class="form-control" placeholder="Password" required>
+        <div ng-class="{'has-error': form.inputemail.$invalid}">
+            <label for="inputemail" class="sr-only">Email address</label>
+            <input type="email" id="inputemail" name="inputemail" ng-model="loginform.email" class="form-control"
+                   placeholder="Email address" required autofocus>
+        </div>
+
+        <div ng-class="{'has-error': form.inputpassword.$invalid}">
+        <label for="inputpassword" class="sr-only">Password</label>
+            <input type="password" id="inputpassword" name="inputpassword" ng-model="loginform.password" class="form-control"
+                   placeholder="Password" required>
+        </div>
+
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me" ng-model="loginform.remember"> Keep me logged in

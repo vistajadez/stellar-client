@@ -5,6 +5,8 @@
         // lib
         'ui.bootstrap',
         'ui.router',
+        'angular-growl',
+        'ngAnimate',
 
         // wc
         'wc.templates',
@@ -15,14 +17,19 @@
         'wc.reminders',
         'wc.auth',
         'wc.contacts',
-        'wc.login'
+        'wc.login',
+        'wc.usermessage'
     ])
     .config([
         'wcConfig',
         '$stateProvider',
         '$urlRouterProvider',
         '$locationProvider',
-        function(wcConfig, $stateProvider, $urlRouterProvider, $locationProvider) {
+        'growlProvider',
+        function(wcConfig, $stateProvider, $urlRouterProvider, $locationProvider, growlProvider) {
+            growlProvider.globalTimeToLive(5000);
+            growlProvider.globalDisableCountDown(true);
+
             $urlRouterProvider.when('', '/dashboard');
             $urlRouterProvider.when('/', '/dashboard');
             $urlRouterProvider.otherwise('/dashboard');
