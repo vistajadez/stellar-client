@@ -25,10 +25,17 @@
                     scope: {},
                     replace: true,
                     link: function(scope) {
-                        // refresh contacts from server and load a reference to the list into scope
+                        // refresh contacts,groups from server
                         contactsService.loadContacts()
                             .then(function(result) {
-                                scope.contacts = result;
+                                // store reference to list of groups in the scope
+                                scope.groups = result.groups;
+
+                                // for each group, build a list of due contacts
+                                scope.dueContacts = {};
+                                angular.forEach(scope.groups, function(group, groupId) {
+                                    scope.dueContacts[groupId] = contactsService.getDueContacts(groupId);
+                                });
                             })
                             .then(null, function(err) {
                                 usermessageService.growlError(err);

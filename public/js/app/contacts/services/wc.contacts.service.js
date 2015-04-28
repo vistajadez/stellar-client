@@ -12,11 +12,13 @@
     angular.module('wc.contacts.service', [])
         .factory('contactsService', [
             'authService',
+            'groupsService',
             '$http',
             'wcConfig',
             '$q',
-            function contactsServiceFactory(authService, $http, wcConfig, $q) {
+            function contactsServiceFactory(authService, groupsService, $http, wcConfig, $q) {
                 var contacts = {};
+                var groups = {};
                 var lastPullTimestamp = ''; // every time we pull from server, we'll set this
 
                 return {
@@ -24,10 +26,22 @@
                      * Load Contacts.
                      * Refresh the contacts list with any updates that have occurred on the server since our last check.
                      *
-                     * Returns a promise.
+                     * @returns {Promise} Promise resolves to an object with "contacts" and "groups" keys, each for
+                     * the respective collection of objects.
                      */
                     loadContacts: function() {
-                        return $q(function(resolve, reject) {
+                        let groupsPromise = $q(function(resolve, reject) {
+                            groupsService.loadGroups()
+                                .then(function(result) {
+                                    groups = result;
+                                    resolve(groups);
+                                })
+                                .then(null, function(err) {
+                                    reject(err);
+                                });
+                        });
+
+                        let contactsPromise = $q(function(resolve, reject) {
                             var userInfo;
                             var url;
 
@@ -70,6 +84,9 @@
                             // reset timestamp
                             lastPullTimestamp = Math.round((new Date()).getTime() / 1000);
                         });
+
+                        // resolve both contacts and groups calls to a single promise
+                        return $q.all({groups: groupsPromise, contacts: contactsPromise});
                     },
 
                     /**
@@ -79,11 +96,34 @@
                      */
                     getContacts: function() {
                         return contacts;
+                    },
+
+                    /**
+                     * Get Groups.
+                     *
+                     * Returns a reference to our list of groups.
+                     */
+                    getGroups: function() {
+                        return groups;
+                    },
+
+                    /**
+                     * Due Contacts
+                     *
+                     * @param groupId
+                     *
+                     * @returns {Object} List of sorted due contacts for the requested group.
+                     */
+                    getDueContacts: function(groupId) {
+                        return {};
                     }
 
 
 
                 };
+
+
+
 
             }
         ]);

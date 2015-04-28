@@ -15,7 +15,8 @@
                 contacts: {
                     url: 'https://livingstellar.com/api/v1/contacts',
                     dependents: 'relationships,touches,stellars,emails,phones'
-                }
+                },
+                groups: 'https://livingstellar.com/api/v1/groups'
             },
             errorMessages: {
                 notAuthorized: 'Not authorized'

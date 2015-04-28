@@ -18,6 +18,7 @@
         'wc.reminders',
         'wc.auth',
         'wc.contacts',
+        'wc.groups',
         'wc.login',
         'wc.usermessage'
     ])
