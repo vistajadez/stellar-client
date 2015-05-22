@@ -26,7 +26,7 @@
                  */
                 var loadContacts = function() {
                     let groupsPromise = $q((resolve, reject) => {
-                        groupsService.loadGroups()
+                        groupsService.load()
                             .then((result) => {
                                 this.groups = result;
                                 resolve(this.groups);
@@ -71,7 +71,7 @@
 
                                 resolve(this.contacts);
                             })
-                            .then((err) => {
+                            .then(null, (err) => {
                                 reject(err);
                             });
 
