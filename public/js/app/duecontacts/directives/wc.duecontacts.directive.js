@@ -26,21 +26,14 @@
                     replace: true,
                     link: function(scope) {
                         // refresh contacts,groups from server
-                        contactsService.loadContacts()
-                            .then(function(result) {
-                                // store reference to list of groups in the scope
-                                scope.groups = result.groups;
-
-                                // for each group, build a list of due contacts
-                                scope.dueContacts = {};
-                                angular.forEach(scope.groups, function(group, groupId) {
-                                    scope.dueContacts[groupId] = contactsService.getDueContacts(groupId);
-                                });
+                        contactsService.load()
+                            .then(function() {
+                                // get a list of due contacts, ordered by group
+                                scope.dueContacts = contactsService.dueContacts();
                             })
                             .then(null, function(err) {
                                 usermessageService.growlError(err);
                             });
-
 
                     }
                 };

@@ -3,7 +3,7 @@
         Loading contacts...
     </div>
 
-    <div ng-if="dueContacts">
-       Contacts will go here
+    <div ng-if="dueContacts" ng-repeat="group in dueContacts">
+       Group: {{group.groupName}}
     </div>
 </div>
