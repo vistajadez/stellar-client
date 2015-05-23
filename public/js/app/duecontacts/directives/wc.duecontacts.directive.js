@@ -29,7 +29,8 @@
                         contactsService.load()
                             .then(function() {
                                 // get a list of due contacts, ordered by group
-                                scope.dueContacts = contactsService.dueContacts();
+                                scope.groups = contactsService.groups;
+                                scope.dueContacts = contactsService.dueContacts;
                             })
                             .then(null, function(err) {
                                 usermessageService.growlError(err);

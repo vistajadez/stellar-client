@@ -62,11 +62,8 @@
                                  * object is quick and efficient.
                                  */
                                 let pulledContacts = result.data.data;
-                                if (pulledContacts.length > 0) {
-                                    this.contacts = pulledContacts.reduce((previousValue, currentValue) => {
-                                        previousValue[currentValue.key] = currentValue;
-                                        return previousValue;
-                                    }, this.contacts);
+                                for (let i = 0, len = pulledContacts.length; i < len; i++) {
+                                    this.contacts[pulledContacts[i].key] = pulledContacts[i];
                                 }
 
                                 resolve(this.contacts);
@@ -83,50 +80,62 @@
                     return $q.all({groups: groupsPromise, contacts: contactsPromise});
                 };
 
-                /**
-                 * Due Contacts For Group.
-                 *
-                 * @param groupId
-                 *
-                 * @returns {Object} List of sorted due contacts for the requested group.
-                 */
-                var dueContactsForGroup = function(groupId) {
-                    if (this.groups.hasOwnProperty(groupId)) {
-                        // determine which contacts are due, and order them by priority
-
-
-                        return {
-                            groupId: groupId,
-                            groupName: this.groups[groupId].name,
-                            contacts: []
-                        };
-                    }
-                };
-
-                /**
-                 * Get Due Contacts.
-                 *
-                 * @returns {Object} List of groups, each containing a list of due contacts for that group.
-                 */
-                var getDueContacts = function() {
-                    let dueContacts = {};
-
-                    angular.forEach(this.groups, (group, groupId) => {
-                        dueContacts[groupId] = this.dueContactsForGroup(groupId);
-                    });
-
-                    return dueContacts;
-                };
+                //var buildGroupMap = function() {
+                //    this.contactsByGroup = {};
+                //
+                //    angular.forEach(this.contacts, (contact) => {
+                //        if (!this.contactsByGroup[contact.group_key]) {
+                //            this.contactsByGroup[contact.group_key] = [];
+                //        }
+                //        this.contactsByGroup[contact.group_key].push(contact.key);
+                //    });
+                //};
+                //
+                ///**
+                // * Due Contacts For Group.
+                // *
+                // * @param groupId
+                // *
+                // * @returns {Object} List of sorted due contacts for the requested group.
+                // */
+                //var dueContactsForGroup = function(groupId) {
+                //    if (this.groups.hasOwnProperty(groupId)) {
+                //        // determine which contacts are due, and order them by priority
+                //        let contacts = [];
+                //
+                //
+                //
+                //        return {
+                //            groupId: groupId,
+                //            groupName: this.groups[groupId].name,
+                //            contacts
+                //        };
+                //    }
+                //};
+                //
+                ///**
+                // * Get Due Contacts.
+                // *
+                // * @returns {Object} List of groups, each containing a list of due contacts for that group.
+                // */
+                //var getDueContacts = function() {
+                //    let dueContacts = [];
+                //
+                //    angular.forEach(this.groups, (group, groupId) => {
+                //        dueContacts[groupId] = this.dueContactsForGroup(groupId);
+                //    });
+                //
+                //    return dueContacts;
+                //};
 
 
                 // Return the model
                 return {
                     contacts: {},
                     groups: {},
+                    dueContacts: {},
                     lastPullTimestamp: '',
-                    load: loadContacts,
-                    dueContacts: getDueContacts,
-                    dueContactsForGroup
+                    load: loadContacts
                 };
 
 

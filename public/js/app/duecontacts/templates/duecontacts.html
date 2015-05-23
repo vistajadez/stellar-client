@@ -1,9 +1,9 @@
 <div class="container wc-duecontacts">
-    <div ng-if="!dueContacts">
+    <div ng-if="!groups">
         Loading contacts...
     </div>
 
-    <div ng-if="dueContacts" ng-repeat="group in dueContacts">
-       Group: {{group.groupName}}
+    <div ng-if="groups" ng-repeat="group in groups">
+       Group: {{group.name}}
     </div>
 </div>

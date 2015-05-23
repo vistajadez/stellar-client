@@ -48,11 +48,8 @@
                                  * object is quick and efficient.
                                  */
                                 let pulledGroups = result.data.data;
-                                if (pulledGroups.length > 0) {
-                                    this.groups = pulledGroups.reduce( (previousValue, currentValue) => {
-                                        previousValue[currentValue.key] = currentValue;
-                                        return previousValue;
-                                    }, this.groups);
+                                for (let i = 0, len = pulledGroups.length; i < len; i++) {
+                                    this.groups[pulledGroups[i].key] = pulledGroups[i];
                                 }
 
                                 resolve(this.groups);
